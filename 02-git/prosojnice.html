@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Računalniški praktikum</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../pomozno/prosojnice.css" />
+    <style>
+        .commit-label {
+            font-size: 120% !important;
+        }
+    </style>
+    <style>
+        .git {
+            font-size: 150%;
+            /*color: green;*/
+        }
+
+        .git * {
+            height: 300px;
+            /*vertical-align: middle;*/
+        }
+
+        .command {
+            display: inline-block;
+            width: 200px;
+            bottom: 100px;
+            position: relative;
+            font-family: Menlo;
+            text-align: center;
+        }
+
+        .tiny h1 {
+            font-size: 200% !important;
+        }
+
+        .tiny h2 {
+            font-size: 150% !important;
+        }
+
+        .tiny * {
+            font-size: 100% !important;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea id="source">
+
+class: center, middle
+
+# Nadzor različic z Gitom
+
+.mermaid-diagram[
+    gitGraph
+        commit
+        commit
+        commit
+        commit
+        branch develop
+        checkout develop
+        commit
+        commit
+        checkout main
+        merge develop
+        commit
+        branch feature
+        checkout feature
+        commit
+        commit
+        checkout main
+        merge feature
+]
+
+---
+
+### Oblačne storitve omogočajo **sledenje spremembam datotek**
+
+`predavanja/02-git/prosojnice.html`
+.mermaid-diagram[
+gitGraph
+    commit id:"2025-10-06 10:01:13"
+    commit id:"2025-10-06 10:07:23"
+    commit id:"2025-10-06 10:12:34"
+    commit id:"2025-10-06 10:13:56"
+    commit id:"2025-10-06 10:15:18"
+    commit id:"2025-10-06 10:25:29"
+    commit id:"2025-10-06 11:01:15"
+    commit id:"2025-10-06 13:10:10"
+    commit id:"2025-10-06 13:15:20"
+    commit id:"2025-10-06 13:30:50"
+]
+
+---
+
+### Spremembe želimo **zabeležiti** ročno
+
+.bad-example[`predavanja/02-git/prosojnice.html`
+.mermaid-diagram[
+gitGraph
+    commit id:"2025-10-06 10:01:13"
+    commit id:"2025-10-06 10:07:23"
+    commit id:"2025-10-06 10:12:34"
+    commit id:"2025-10-06 10:13:45"
+    commit id:"2025-10-06 10:13:56"
+    commit id:"2025-10-06 10:13:07"
+    commit id:"2025-10-06 10:15:18"
+    commit id:"2025-10-06 10:25:29"
+    commit id:"2025-10-06 11:01:12"
+    commit id:"2025-10-06 11:01:15"
+    commit id:"2025-10-06 11:03:40"
+    commit id:"2025-10-06 13:03:40"
+    commit id:"2025-10-06 13:05:50"
+    commit id:"2025-10-06 13:07:00"
+    commit id:"2025-10-06 13:10:10"
+    commit id:"2025-10-06 13:15:20"
+    commit id:"2025-10-06 13:20:30"
+    commit id:"2025-10-06 13:25:40"
+    commit id:"2025-10-06 13:30:50"
+]]
+
+--
+
+.good-example[`predavanja/02-git/prosojnice.html`
+.mermaid-diagram[
+gitGraph
+    commit id:"začel pisati"
+    commit id:"struktura prvega dela"
+    commit id:"struktura drugega dela"
+    commit id:"napisal terminologijo"
+    commit id:"dodal slike"
+    commit id:"popravil stil prosojnic"
+    commit id:"popravki in povezave"
+    commit id:"dodan večji primer"
+]]
+
+---
+
+### Spremembam na več datotekah želimo slediti **hkrati**
+
+.left-column[.bad-example[
+`predavanja/01-uvod/prosojnice.html`
+.mermaid-diagram[
+gitGraph
+    commit id:"začel pisati"
+    commit id:"struktura prvega dela"
+    commit id:"struktura drugega dela"
+    commit id:"napisal terminologijo"
+    commit id:"dodal slike"
+    commit id:"popravil stil prosojnic"
+    commit id:"popravki in povezave"
+    commit id:"dodan večji primer"
+]
+
+`predavanja/02-git/prosojnice.html`
+
+.mermaid-diagram[
+gitGraph
+    commit id:"dodal pozabljeno povezavo"
+    commit id:"popravil stil prosojnic"
+]
+]]
+
+--
+
+.right-column[.good-example[
+`predavanja/`
+.mermaid-diagram[
+gitGraph
+    commit id:"dodal pozabljeno povezavo (01)"
+    commit id:"začel pisati (02)"
+    commit id:"struktura prvega dela (02)"
+    commit id:"struktura drugega dela (02)"
+    commit id:"napisal terminologijo (02)"
+    commit id:"dodal slike (02)"
+    commit id:"popravil stil prosojnic (01, 02)"
+    commit id:"popravki in povezave (02)"
+    commit id:"dodan večji primer (02)"
+]
+]]
+
+---
+
+class: center, middle
+
+.mini[[![Git](slike/git.svg)](https://git-scm.com)]
+
+.attribution[Git logo by Jason Long — CC BY 3.0]
+
+---
+
+### **Osnovni izrazi**, uporabljeni v Gitu
+
+#### Delovno drevo (working tree)
+
+Imenik z vklopljenim nadzorom različic.
+
+#### Sprememba (commit)
+
+Zabeleženo stanje datotek skupaj s časom, avtorjem, opisom, podatkih o predhodnikih, …
+
+#### Zgoščena vrednost (hash)
+
+Enolična šifra zabeležbe, izračunana iz njene vsebine.
+
+#### Repozitorij (repository)
+
+Zbirka zabeleženih sprememb.
+
+#### Klon (clone)
+
+Kopija repozitorija, povezana z izvorno različico.
+
+---
+
+### Z ukazom `init` **ustvarimo** nov repozitorij
+
+```
+01-vscode-in-terminal
+02-git
+neurejeno.txt
+pomozno
+```
+
+--
+
+.center[`$ git init`]
+
+--
+
+```
+.git
+01-vscode-in-terminal
+02-git
+neurejeno.txt
+pomozno
+```
+
+---
+
+### Spremembo **zabeležimo** z ukazom `commit`
+
+.center[
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+]]
+
+--
+
+.center[`$ git commit ...`]
+
+--
+
+.center[
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+    commit id:"8"
+]]
+
+--
+
+.center[`$ git commit ...`]
+
+--
+
+.center[
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+    commit id:"8"
+    commit id:"9"
+]]
+
+---
+
+class: question, center, middle
+
+.mini[[![Visual Studio Code](../01-vscode-in-terminal/vs-code.png)](https://code.visualstudio.com/)]
+## Delo z Gitom v urejevalniku VS Code
+
+---
+
+### Vsak repozitorij naj ima datoteki `README.md` in `.gitignore`
+
+```
+To je **poudarjeno besedilo**. In zdaj sledi naštevanje:
+
+- beseda, lahko tudi `koda`
+- *ležeča besedna zveza*
+- [FMF](http://www.fmf.uni-lj.si/)
+```
+
+- - -
+
+To je **poudarjeno besedilo**. In zdaj sledi
+naštevanje:
+
+* beseda, lahko tudi `koda`
+* *ležeča besedna zveza*
+* [FMF](http://www.fmf.uni-lj.si/)
+
+---
+
+### Repozitorij **kloniramo** z ukazom `clone`
+
+.center[## ☁️
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+]]
+
+--
+
+.center[`$ git clone ...`]
+
+--
+
+.center[## 💻
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+]]
+
+---
+
+### Spremembe izvirnika **povlečemo** z ukazom `pull`
+
+.center[## ☁️
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+    commit id:"8"
+]]
+
+.center[`$ git pull`]
+
+.center[## 💻
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+]]
+
+---
+
+### Spremembe izvirnika **povlečemo** z ukazom `pull`
+
+.center[## ☁️
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+    commit id:"8"
+]]
+
+.center[`$ git pull`]
+
+.center[## 💻
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+    commit id:"8"
+]]
+
+---
+
+### V obratno smer spremembe **potisnemo** z ukazom `push`
+
+.center[## ☁️
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+    commit id:"8"
+]]
+
+.center[`$ git push`]
+
+.center[## 💻
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+    commit id:"8"
+    commit id:"9"
+]]
+
+---
+
+### V obratno smer spremembe **potisnemo** z ukazom `push`
+
+.center[## ☁️
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+    commit id:"8"
+    commit id:"9"
+]]
+
+.center[`$ git push`]
+
+.center[## 💻
+.mermaid-diagram[
+gitGraph
+    commit id:"1"
+    commit id:"2"
+    commit id:"3"
+    commit id:"4"
+    commit id:"5"
+    commit id:"6"
+    commit id:"7"
+    commit id:"8"
+    commit id:"9"
+]]
+
+
+---
+
+class: question, center, middle
+
+## Primer sinhronizacije
+
+---
+
+### Recimo, da na dveh koncih naredimo **različni spremembi**
+
+.center.git[
+    ![commit](slike/commit.png)
+    <span class="command"></span>
+    ![commit](slike/commit.png)
+    <span class="command">commit =></span>
+    ![commit](slike/commit.png)
+]
+
+---
+
+### Recimo, da na dveh koncih naredimo **različni spremembi**
+
+.center.git[
+    ![commit](slike/commit.png)
+    <span class="command"></span>
+    ![commit](slike/commit.png)
+    <span class="command">commit =></span>
+    ![commit](slike/div-b.png)
+]
+
+---
+
+### Recimo, da na dveh koncih naredimo **različni spremembi**
+
+.center.git[
+    ![commit](slike/commit.png)
+    <span class="command"><= commit</span>
+    ![commit](slike/commit.png)
+    <span class="command"></span>
+    ![commit](slike/div-b.png)
+]
+
+---
+
+### Recimo, da na dveh koncih naredimo **različni spremembi**
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command"><= commit</span>
+    ![commit](slike/commit.png)
+    <span class="command"></span>
+    ![commit](slike/div-b.png)
+]
+
+---
+
+### **Kdor prvi pride**,lahko naredi `push`
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command">-> push -></span>
+    ![commit](slike/commit.png)
+    <span class="command"></span>
+    ![commit](slike/div-b.png)
+]
+
+---
+
+### **Kdor prvi pride**,lahko naredi `push`
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command">-> push -></span>
+    ![commit](slike/div-a.png)
+    <span class="command"></span>
+    ![commit](slike/div-b.png)
+]
+
+---
+
+### Drugega ukaza `push` strežnik **noče sprejeti**
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command"></span>
+    ![commit](slike/div-a.png)
+    <span class="command"><- push <-</span>
+    ![commit](slike/div-b.png)
+]
+
+---
+
+### Drugega ukaza `push` strežnik **noče sprejeti**
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command"></span>
+    ![commit](slike/div-a.png)
+    <span class="command" style="color: red"><- push <-</span>
+    ![commit](slike/div-b.png)
+]
+
+---
+
+### Z ukazom `pull` s strežnika **poberemo in zlijemo** spremembe
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command"></span>
+    ![commit](slike/div-a.png)
+    <span class="command">-> pull -></span>
+    ![commit](slike/div-b.png)
+]
+
+---
+
+### Z ukazom `pull` s strežnika **poberemo in zlijemo** spremembe
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command"></span>
+    ![commit](slike/div-a.png)
+    <span class="command">-> pull -></span>
+    ![commit](slike/fetch.png)
+]
+
+---
+
+### Z ukazom `pull` s strežnika **poberemo in zlijemo** spremembe
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command"></span>
+    ![commit](slike/div-a.png)
+    <span class="command">merge =></span>
+    ![commit](slike/merge.png)
+]
+
+---
+
+### **Zlite** spremembe lahko nato pošljemo na strežnik
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command"></span>
+    ![commit](slike/div-a.png)
+    <span class="command"><- push <-</span>
+    ![commit](slike/merge.png)
+]
+
+---
+
+### **Zlite** spremembe lahko nato pošljemo na strežnik
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command"></span>
+    ![commit](slike/merge.png)
+    <span class="command"><- push <-</span>
+    ![commit](slike/merge.png)
+]
+
+---
+
+### **Zlite** spremembe lahko nato pošljemo na strežnik
+
+.center.git[
+    ![commit](slike/div-a.png)
+    <span class="command"><- pull <-</span>
+    ![commit](slike/merge.png)
+    <span class="command"></span>
+    ![commit](slike/merge.png)
+]
+
+---
+
+### **Zlite** spremembe lahko nato pošljemo na strežnik
+
+.center.git[
+    ![commit](slike/merge.png)
+    <span class="command"><- pull <-</span>
+    ![commit](slike/merge.png)
+    <span class="command"></span>
+    ![commit](slike/merge.png)
+]
+
+</textarea>
+    <script src="../pomozno/prosojnice.js"></script>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+        // Initialize Mermaid but don't render diagrams on start
+        mermaid.initialize({
+            startOnLoad: false,
+            cloneCssStyles: false,
+            gitGraph: {
+                showBranches: false
+            }
+        });
+
+        function initMermaid(s) {
+            const elements = document.querySelectorAll(".remark-slide")[s.getSlideIndex()]
+                ?.querySelectorAll('.mermaid-diagram p:not([data-processed="true"])');
+            if (elements) mermaid.init(undefined, elements);
+        }
+
+        // Render diagrams immediately on the current slide
+        initMermaid(slideshow.getSlides()[slideshow.getCurrentSlideIndex()]);
+
+        // Render diagrams when there is a navigation to another slide
+        slideshow.on("afterShowSlide", initMermaid);
+
+    </script>
+</body>
+
+</html>
