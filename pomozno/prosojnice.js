@@ -1,59 +1,32 @@
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 
-// Initialize Mermaid but don't render diagrams on start
-mermaid.initialize({
-    startOnLoad: false,
-    cloneCssStyles: false,
-    gitGraph: {
-        showBranches: false
-    }
-});
+mermaid.initialize();
 
-function initMermaid(s) {
-    const elements = document.querySelectorAll(".remark-slide")[s.getSlideIndex()]
-        ?.querySelectorAll('.mermaid-diagram p:not([data-processed="true"])');
-    if (elements) mermaid.init(undefined, elements);
+// reveal-init.js
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
 }
 
-var jQuerySrc = document.createElement('script');
-jQuerySrc.src = 'https://code.jquery.com/jquery-1.12.4.min.js';
-jQuerySrc.type = 'text/javascript';
-jQuerySrc.onload = function() {
-    var $ = window.jQuery;
-    $(document).ready(function() { 
-
-      $('span.spoiler').hide();
-
-      $('<a class="reveal">???</a>').insertBefore('.spoiler');
-
-      $('a.reveal').click(function(){
-        $(this).next().fadeIn(100);
-        $(this).hide();
-      });
-    }); 
-};
-document.head.appendChild(jQuerySrc);
-
-var remarkSrc = document.createElement('script');
-remarkSrc.src = 'https://remarkjs.com/downloads/remark-latest.min.js';
-remarkSrc.type = 'text/javascript';
-remarkSrc.onload = function () {
-  var slideshow = remark.create({
-    highlightLines: true,
-    highlightLanguage: 'ocaml',
-    highlightStyle: 'github',
-    countIncrementalSlides: false,
-    ratio: '16:9'
-  });          
-  // Render diagrams immediately on the current slide
-  initMermaid(slideshow.getSlides()[slideshow.getCurrentSlideIndex()]);
-
-  // Render diagrams when there is a navigation to another slide
-  slideshow.on("afterShowSlide", initMermaid);
-};
-document.head.appendChild(remarkSrc);
-
-var mathJaxSrc = document.createElement('script');
-mathJaxSrc.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-mathJaxSrc.type = 'text/javascript';
-document.head.appendChild(mathJaxSrc);
+Promise.all([
+  loadScript('https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js'),
+  loadScript('https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/markdown/markdown.js'),
+  loadScript('https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/math/math.js'),
+  loadScript('https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js'),
+]).then(() => {
+  Reveal.initialize({
+    controls: "speaker-only",
+    center: false,
+    progress: false,
+    slideNumber: "c/t",
+    hash: true,
+    plugins: [RevealMarkdown, RevealMath.KaTeX, RevealHighlight],
+    transition: 'none',
+    viewDistance: 99,
+  });
+});

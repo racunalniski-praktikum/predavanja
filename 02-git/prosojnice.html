@@ -1,218 +1,198 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
-    <title>Računalniški praktikum</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../pomozno/prosojnice.css" />
-    <style>
-        .commit-label {
-            font-size: 120% !important;
-        }
-    </style>
-    <style>
-        .git {
-            font-size: 150%;
-            /*color: green;*/
-        }
+<meta charset="utf-8">
+<title>Git</title>
 
-        .git * {
-            height: 300px;
-            /*vertical-align: middle;*/
-        }
-
-        .command {
-            display: inline-block;
-            width: 200px;
-            bottom: 100px;
-            position: relative;
-            font-family: Menlo;
-            text-align: center;
-        }
-
-        .tiny h1 {
-            font-size: 200% !important;
-        }
-
-        .tiny h2 {
-            font-size: 150% !important;
-        }
-
-        .tiny * {
-            font-size: 100% !important;
-        }
-    </style>
+<link rel="stylesheet" href="../pomozno/prosojnice.css">
 </head>
 
 <body>
-    <textarea id="source">
-
-class: center, middle
-
-# Nadzor različic z Gitom
-
-.mermaid-diagram[
-    gitGraph
-        commit
-        commit
-        commit
-        commit
-        branch develop
-        checkout develop
-        commit
-        commit
-        checkout main
-        merge develop
-        commit
-        branch feature
-        checkout feature
-        commit
-        commit
-        checkout main
-        merge feature
-]
-
----
-
-### Oblačne storitve omogočajo **sledenje spremembam datotek**
-
-`predavanja/02-git/prosojnice.html`
-.mermaid-diagram[
+<div class="reveal">
+<div class="slides">
+<section class="center">
+<h1>Git</h1>
+<div class="mermaid">
 gitGraph
-    commit id:"2025-10-06 10:01:13"
-    commit id:"2025-10-06 10:07:23"
-    commit id:"2025-10-06 10:12:34"
-    commit id:"2025-10-06 10:13:56"
-    commit id:"2025-10-06 10:15:18"
-    commit id:"2025-10-06 10:25:29"
-    commit id:"2025-10-06 11:01:15"
-    commit id:"2025-10-06 13:10:10"
-    commit id:"2025-10-06 13:15:20"
-    commit id:"2025-10-06 13:30:50"
-]
+commit
+commit
+commit
+commit
+branch develop
+checkout develop
+commit
+commit
+checkout main
+merge develop
+commit
+branch feature
+checkout feature
+commit
+commit
+checkout main
+merge feature
+</div>
+</section>
 
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
+
+<section>
+<h3>Oblačne storitve omogočajo <strong>sledenje spremembam datotek</strong></h3>
+<div class="mermaid">
 ---
-
-### Spremembe želimo **zabeležiti** ročno
-
-.bad-example[`predavanja/02-git/prosojnice.html`
-.mermaid-diagram[
+config:
+    gitGraph:
+        mainBranchName: '02-git/prosojnice.html'
+themeVariables:
+    'git0': '#E03127'
+---                    
 gitGraph
-    commit id:"2025-10-06 10:01:13"
-    commit id:"2025-10-06 10:07:23"
-    commit id:"2025-10-06 10:12:34"
-    commit id:"2025-10-06 10:13:45"
-    commit id:"2025-10-06 10:13:56"
-    commit id:"2025-10-06 10:13:07"
-    commit id:"2025-10-06 10:15:18"
-    commit id:"2025-10-06 10:25:29"
-    commit id:"2025-10-06 11:01:12"
-    commit id:"2025-10-06 11:01:15"
-    commit id:"2025-10-06 11:03:40"
-    commit id:"2025-10-06 13:03:40"
-    commit id:"2025-10-06 13:05:50"
-    commit id:"2025-10-06 13:07:00"
-    commit id:"2025-10-06 13:10:10"
-    commit id:"2025-10-06 13:15:20"
-    commit id:"2025-10-06 13:20:30"
-    commit id:"2025-10-06 13:25:40"
-    commit id:"2025-10-06 13:30:50"
-]]
+commit id:"2025-10-06 10:01:13"
+commit id:"2025-10-06 10:07:23"
+commit id:"2025-10-06 10:12:34"
+commit id:"2025-10-06 10:13:56"
+commit id:"2025-10-06 10:15:18"
+commit id:"2025-10-06 10:25:29"
+commit id:"2025-10-06 11:01:15"
+commit id:"2025-10-06 13:10:10"
+commit id:"2025-10-06 13:15:20"
+commit id:"2025-10-06 13:30:50"
+</div>
+</section>
 
---
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
 
-.good-example[`predavanja/02-git/prosojnice.html`
-.mermaid-diagram[
-gitGraph
-    commit id:"začel pisati"
-    commit id:"struktura prvega dela"
-    commit id:"struktura drugega dela"
-    commit id:"napisal terminologijo"
-    commit id:"dodal slike"
-    commit id:"popravil stil prosojnic"
-    commit id:"popravki in povezave"
-    commit id:"dodan večji primer"
-]]
-
+<section>
+<h3>Spremembe želimo <strong>zabeležiti</strong> ročno</h3>
+<div class="mermaid">
 ---
-
-### Spremembam na več datotekah želimo slediti **hkrati**
-
-.left-column[.bad-example[
-`predavanja/01-uvod/prosojnice.html`
-.mermaid-diagram[
+config:
+    gitGraph:
+        mainBranchName: '02-git/prosojnice.html'
+    themeVariables:
+        'git0': '#E03127'
+---                    
 gitGraph
-    commit id:"začel pisati"
-    commit id:"struktura prvega dela"
-    commit id:"struktura drugega dela"
-    commit id:"napisal terminologijo"
-    commit id:"dodal slike"
-    commit id:"popravil stil prosojnic"
-    commit id:"popravki in povezave"
-    commit id:"dodan večji primer"
-]
-
-`predavanja/02-git/prosojnice.html`
-
-.mermaid-diagram[
+commit id:"2025-10-06 10:01:13"
+commit id:"2025-10-06 10:07:23"
+commit id:"2025-10-06 10:12:34"
+commit id:"2025-10-06 10:13:45"
+commit id:"2025-10-06 10:13:56"
+commit id:"2025-10-06 10:13:07"
+commit id:"2025-10-06 10:15:18"
+commit id:"2025-10-06 10:25:29"
+commit id:"2025-10-06 11:01:12"
+commit id:"2025-10-06 11:01:15"
+commit id:"2025-10-06 11:03:40"
+commit id:"2025-10-06 13:03:40"
+commit id:"2025-10-06 13:05:50"
+commit id:"2025-10-06 13:07:00"
+commit id:"2025-10-06 13:10:10"
+commit id:"2025-10-06 13:15:20"
+commit id:"2025-10-06 13:20:30"
+commit id:"2025-10-06 13:25:40"
+commit id:"2025-10-06 13:30:50"
+</div>
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: '02-git/prosojnice.html'
+    themeVariables:
+        'git0': '#2878AC'
+---                    
 gitGraph
-    commit id:"dodal pozabljeno povezavo"
-    commit id:"popravil stil prosojnic"
-]
-]]
+commit id:"začel pisati"
+commit id:"struktura prvega dela"
+commit id:"struktura drugega dela"
+commit id:"napisal terminologijo"
+commit id:"dodal slike"
+commit id:"popravil stil prosojnic"
+commit id:"popravki in povezave"
+commit id:"dodan večji primer"
+</div>
+</section>
 
---
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
 
-.right-column[.good-example[
-`predavanja/`
-.mermaid-diagram[
+<section>
+<h3>Spremembam več datotek želimo slediti <strong>hkrati</strong></h3>
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: '01-vscode-in-terminal/prosojnice.html'
+    themeVariables:
+        'git0': '#E03127'
+---                    
 gitGraph
-    commit id:"dodal pozabljeno povezavo (01)"
-    commit id:"začel pisati (02)"
-    commit id:"struktura prvega dela (02)"
-    commit id:"struktura drugega dela (02)"
-    commit id:"napisal terminologijo (02)"
-    commit id:"dodal slike (02)"
-    commit id:"popravil stil prosojnic (01, 02)"
-    commit id:"popravki in povezave (02)"
-    commit id:"dodan večji primer (02)"
-]
-]]
-
+commit id:"dodal pozabljeno povezavo"
+commit id:"popravil stil prosojnic"
+</div>
+<div class="mermaid">
 ---
-
-class: center, middle
-
-.mini[[![Git](slike/git.svg)](https://git-scm.com)]
-
-.attribution[Git logo by Jason Long — CC BY 3.0]
-
+config:
+    gitGraph:
+        mainBranchName: '02-git/prosojnice.html'
+    themeVariables:
+        'git0': '#E03127'
+---                    
+gitGraph
+commit id:"začel pisati"
+commit id:"struktura prvega dela"
+commit id:"struktura drugega dela"
+commit id:"napisal terminologijo"
+commit id:"dodal slike"
+commit id:"popravil stil prosojnic"
+commit id:"popravki in povezave"
+commit id:"dodan večji primer"
+</div>
+<div class="mermaid">
 ---
+config:
+    gitGraph:
+        mainBranchName: 'predavanja/'
+    themeVariables:
+        'git0': '#2878AC'
+---                    
+gitGraph
+commit id:"dodal pozabljeno povezavo (01)"
+commit id:"začel pisati (02)"
+commit id:"struktura prvega dela (02)"
+commit id:"struktura drugega dela (02)"
+commit id:"napisal terminologijo (02)"
+commit id:"dodal slike (02)"
+commit id:"popravil stil prosojnic (01, 02)"
+commit id:"popravki in povezave (02)"
+commit id:"dodan večji primer (02)"
+</div>
+</section>
 
-### **Osnovni izrazi**, uporabljeni v Gitu
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
 
-#### Delovno drevo (working tree)
+<section class="center">
+<img class="r-stretch" src="git.svg" alt="Git" />
+<p><a href="https://git-scm.com/">Git</a></p>
+</section>
 
-Imenik z vklopljenim nadzorom različic.
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
 
-#### Sprememba (commit)
+<section data-markdown>
+<textarea data-template>
+### **Osnovni izrazi** v Gitu
 
-Zabeleženo stanje datotek skupaj s časom, avtorjem, opisom, podatkih o predhodnikih, …
+- **Sprememba** (commit): zabeleženo stanje datotek skupaj s časom, avtorjem, opisom, …
+- **Repozitorij** (repository): zbirka zabeleženih sprememb
+- **Delovno drevo** (working tree): imenik z vklopljenim nadzorom različic
+- **Klon** (clone): kopija repozitorija, povezana z izvorno različico
+</textarea>
+</section>
 
-#### Zgoščena vrednost (hash)
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
 
-Enolična šifra zabeležbe, izračunana iz njene vsebine.
-
-#### Repozitorij (repository)
-
-Zbirka zabeleženih sprememb.
-
-#### Klon (clone)
-
-Kopija repozitorija, povezana z izvorno različico.
-
----
-
+<section data-markdown>
+<textarea data-template>
 ### Z ukazom `init` **ustvarimo** nov repozitorij
 
 ```
@@ -222,455 +202,299 @@ neurejeno.txt
 pomozno
 ```
 
---
-
-.center[`$ git init`]
-
---
+`$ git init`<!-- .element: class="fragment" -->
 
 ```
 .git
 01-vscode-in-terminal
 02-git
 neurejeno.txt
-pomozno
+pomozno 
 ```
-
----
-
-### Spremembo **zabeležimo** z ukazom `commit`
-
-.center[
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-]]
-
---
-
-.center[`$ git commit ...`]
-
---
-
-.center[
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-    commit id:"8"
-]]
-
---
-
-.center[`$ git commit ...`]
-
---
-
-.center[
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-    commit id:"8"
-    commit id:"9"
-]]
-
----
-
-class: question, center, middle
-
-.mini[[![Visual Studio Code](../01-vscode-in-terminal/vs-code.png)](https://code.visualstudio.com/)]
-## Delo z Gitom v urejevalniku VS Code
-
----
-
-### Vsak repozitorij naj ima datoteki `README.md` in `.gitignore`
-
-```
-To je **poudarjeno besedilo**. In zdaj sledi naštevanje:
-
-- beseda, lahko tudi `koda`
-- *ležeča besedna zveza*
-- [FMF](http://www.fmf.uni-lj.si/)
-```
-
-- - -
-
-To je **poudarjeno besedilo**. In zdaj sledi
-naštevanje:
-
-* beseda, lahko tudi `koda`
-* *ležeča besedna zveza*
-* [FMF](http://www.fmf.uni-lj.si/)
-
----
-
-### Repozitorij **kloniramo** z ukazom `clone`
-
-.center[## ☁️
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-]]
-
---
-
-.center[`$ git clone ...`]
-
---
-
-.center[## 💻
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-]]
-
----
-
-### Spremembe izvirnika **povlečemo** z ukazom `pull`
-
-.center[## ☁️
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-    commit id:"8"
-]]
-
-.center[`$ git pull`]
-
-.center[## 💻
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-]]
-
----
-
-### Spremembe izvirnika **povlečemo** z ukazom `pull`
-
-.center[## ☁️
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-    commit id:"8"
-]]
-
-.center[`$ git pull`]
-
-.center[## 💻
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-    commit id:"8"
-]]
-
----
-
-### V obratno smer spremembe **potisnemo** z ukazom `push`
-
-.center[## ☁️
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-    commit id:"8"
-]]
-
-.center[`$ git push`]
-
-.center[## 💻
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-    commit id:"8"
-    commit id:"9"
-]]
-
----
-
-### V obratno smer spremembe **potisnemo** z ukazom `push`
-
-.center[## ☁️
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-    commit id:"8"
-    commit id:"9"
-]]
-
-.center[`$ git push`]
-
-.center[## 💻
-.mermaid-diagram[
-gitGraph
-    commit id:"1"
-    commit id:"2"
-    commit id:"3"
-    commit id:"4"
-    commit id:"5"
-    commit id:"6"
-    commit id:"7"
-    commit id:"8"
-    commit id:"9"
-]]
-
-
----
-
-class: question, center, middle
-
-## Primer sinhronizacije
-
----
-
-### Recimo, da na dveh koncih naredimo **različni spremembi**
-
-.center.git[
-    ![commit](slike/commit.png)
-    <span class="command"></span>
-    ![commit](slike/commit.png)
-    <span class="command">commit =></span>
-    ![commit](slike/commit.png)
-]
-
----
-
-### Recimo, da na dveh koncih naredimo **različni spremembi**
-
-.center.git[
-    ![commit](slike/commit.png)
-    <span class="command"></span>
-    ![commit](slike/commit.png)
-    <span class="command">commit =></span>
-    ![commit](slike/div-b.png)
-]
-
----
-
-### Recimo, da na dveh koncih naredimo **različni spremembi**
-
-.center.git[
-    ![commit](slike/commit.png)
-    <span class="command"><= commit</span>
-    ![commit](slike/commit.png)
-    <span class="command"></span>
-    ![commit](slike/div-b.png)
-]
-
----
-
-### Recimo, da na dveh koncih naredimo **različni spremembi**
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command"><= commit</span>
-    ![commit](slike/commit.png)
-    <span class="command"></span>
-    ![commit](slike/div-b.png)
-]
-
----
-
-### **Kdor prvi pride**,lahko naredi `push`
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command">-> push -></span>
-    ![commit](slike/commit.png)
-    <span class="command"></span>
-    ![commit](slike/div-b.png)
-]
-
----
-
-### **Kdor prvi pride**,lahko naredi `push`
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command">-> push -></span>
-    ![commit](slike/div-a.png)
-    <span class="command"></span>
-    ![commit](slike/div-b.png)
-]
-
----
-
-### Drugega ukaza `push` strežnik **noče sprejeti**
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command"></span>
-    ![commit](slike/div-a.png)
-    <span class="command"><- push <-</span>
-    ![commit](slike/div-b.png)
-]
-
----
-
-### Drugega ukaza `push` strežnik **noče sprejeti**
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command"></span>
-    ![commit](slike/div-a.png)
-    <span class="command" style="color: red"><- push <-</span>
-    ![commit](slike/div-b.png)
-]
-
----
-
-### Z ukazom `pull` s strežnika **poberemo in zlijemo** spremembe
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command"></span>
-    ![commit](slike/div-a.png)
-    <span class="command">-> pull -></span>
-    ![commit](slike/div-b.png)
-]
-
----
-
-### Z ukazom `pull` s strežnika **poberemo in zlijemo** spremembe
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command"></span>
-    ![commit](slike/div-a.png)
-    <span class="command">-> pull -></span>
-    ![commit](slike/fetch.png)
-]
-
----
-
-### Z ukazom `pull` s strežnika **poberemo in zlijemo** spremembe
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command"></span>
-    ![commit](slike/div-a.png)
-    <span class="command">merge =></span>
-    ![commit](slike/merge.png)
-]
-
----
-
-### **Zlite** spremembe lahko nato pošljemo na strežnik
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command"></span>
-    ![commit](slike/div-a.png)
-    <span class="command"><- push <-</span>
-    ![commit](slike/merge.png)
-]
-
----
-
-### **Zlite** spremembe lahko nato pošljemo na strežnik
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command"></span>
-    ![commit](slike/merge.png)
-    <span class="command"><- push <-</span>
-    ![commit](slike/merge.png)
-]
-
----
-
-### **Zlite** spremembe lahko nato pošljemo na strežnik
-
-.center.git[
-    ![commit](slike/div-a.png)
-    <span class="command"><- pull <-</span>
-    ![commit](slike/merge.png)
-    <span class="command"></span>
-    ![commit](slike/merge.png)
-]
-
----
-
-### **Zlite** spremembe lahko nato pošljemo na strežnik
-
-.center.git[
-    ![commit](slike/merge.png)
-    <span class="command"><- pull <-</span>
-    ![commit](slike/merge.png)
-    <span class="command"></span>
-    ![commit](slike/merge.png)
-]
-
+<!-- .element: class="fragment" -->
 </textarea>
+</section>
+
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
+
+<section>
+<h3>Spremembo <strong>zabeležimo</strong> z ukazom <code>commit</code></h3>
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        showBranches: false
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+</div>
+
+<p class="fragment"><code>git commit ...</code></p>
+
+<div class="mermaid fragment">
+---
+config:
+    gitGraph:
+        showBranches: false
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+commit id:"8"
+</div>
+
+
+<p class="fragment"><code>git commit ...</code></p>
+
+<div class="mermaid fragment">
+---
+config:
+    gitGraph:
+        showBranches: false
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+commit id:"8"
+commit id:"9"
+</div>
+</section>
+
+<section>
+<h3>Repozitorij <strong>kloniramo</strong> z ukazom <code>clone</code></h3>
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: 'strežnik'
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+</div>
+
+<p class="fragment"><code>git clone</code></p>
+
+<div class="mermaid fragment">
+---
+config:
+    gitGraph:
+        mainBranchName: 'računalnik'
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+</div>
+</section>
+
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
+
+<section>
+<h3>Spremembe izvirnika <strong>povlečemo</strong> z ukazom <code>pull</code></h3>
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: 'strežnik'
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+commit id:"8"
+</div>
+
+<p class="fragment"><code>git pull</code></p>
+
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: 'računalnik'
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+</div>
+</section>
+
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
+
+<section>
+<h3>Spremembe izvirnika <strong>povlečemo</strong> z ukazom <code>pull</code></h3>
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: 'strežnik'
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+commit id:"8"
+</div>
+
+<p><code>git pull</code></p>
+
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: 'računalnik'
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+commit id:"8"
+</div>
+</section>
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
+
+<section>
+<h3>V obratno smer spremembe <strong>potisnemo</strong> z ukazom <code>push</code></h3>
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: 'strežnik'
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+commit id:"8"
+</div>
+
+<p class="fragment"><code>git push</code></p>
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: 'računalnik'
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+commit id:"8"
+commit id:"9"
+</div>
+</section>
+
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
+
+<section>
+<h3>V obratno smer spremembe <strong>potisnemo</strong> z ukazom <code>push</code></h3>
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: 'strežnik'
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+commit id:"8"
+commit id:"9"
+</div>
+
+<p><code>git push</code></p>
+
+
+<div class="mermaid">
+---
+config:
+    gitGraph:
+        mainBranchName: 'računalnik'
+---                    
+gitGraph
+commit id:"1"
+commit id:"2"
+commit id:"3"
+commit id:"4"
+commit id:"5"
+commit id:"6"
+commit id:"7"
+commit id:"8"
+commit id:"9"
+</div>
+</section>
+
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
+
+<section class="center">
+<img class="r-stretch" src="../01-vscode-in-terminal/vs-code.png" alt="Visual Studio Code" />
+<p>Delo z Gitom v VS Code</p>
+</section>
+
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
+
+<section class="center">
+<h1 style="font-size:1000%">⚔️</h1>
+<p>konflikti</p>
+</section>
+
+<!-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -->
+
+</div>
 <script src="../pomozno/prosojnice.js" type="module"></script>
 </body>
 
