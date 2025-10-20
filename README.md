@@ -6,3 +6,5 @@ Tu lahko najdete prosojnice in datoteke s predavanj pri predmetu Računalniški 
    - [prosojnice](01-uvod/prosojnice.html)
 2. **Git** (nadzor različic, oblačne storitve, Git, sinhronizacija, konflikti)
    - [prosojnice](02-git/prosojnice.html)
+3. **HTML** (Internet & splet, HTML, kodne tabele)
+   - [prosojnice](03-html/prosojnice.html)

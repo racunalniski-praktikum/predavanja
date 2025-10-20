@@ -1,5 +1,6 @@
 @import url('https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css');
 @import url('https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/simple.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css');
 :root {
     --r-code-font: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
     --r-main-font: Avenir Next, Helvetica, Arial, sans-serif !important;
