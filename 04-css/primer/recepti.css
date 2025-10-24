@@ -1,0 +1,100 @@
+body {
+    font-family: system-ui, sans-serif;
+    line-height: 1.6;
+    background: #eee;
+    color: #222;
+    margin: 2rem;
+    font-size: 12pt;
+}
+
+dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.2rem 0.5rem;
+    font-size: 0.95em;
+    margin-top: 0.5rem;
+}
+
+#copyright {
+    text-align: center;
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 2rem;
+}
+
+.ikona {
+    font-size: 5rem;
+    float: right;
+    margin-left: 1rem;
+}
+
+dl dt {
+    color: #aaa;
+}
+
+dl dd {
+    font-weight: bold;
+}
+
+.koraki li {
+    padding-left: 1.5em;
+    margin-bottom: 0.3em;
+}
+
+.sestavine {
+    padding: 0;
+}
+
+.sestavine li {
+    display: inline;
+}
+
+.sestavine li:not(:last-child)::after {
+    content: " • ";
+}
+
+#recepti {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#recepti>li {
+    display: block;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#recepti .veganski {
+    background: lightgreen;
+    border-color: rgb(12, 169, 12);
+    color: darkgreen;
+}
+
+.veganski dl dt {
+    color: rgb(18, 168, 18);
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: none;
+        transform: scale(1);
+    }
+
+    50% {
+        text-shadow: 0 0 12px rgba(255, 160, 50, 0.95), 0 0 24px rgba(255, 120, 20, 0.5);
+        transform: scale(1.07);
+    }
+
+    100% {
+        text-shadow: none;
+        transform: scale(1);
+    }
+}
+
+.priporoceno {
+    animation: glow 2s infinite;
+}
