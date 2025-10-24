@@ -8,3 +8,6 @@ Tu lahko najdete prosojnice in datoteke s predavanj pri predmetu Računalniški 
    - [prosojnice](02-git/prosojnice.html)
 3. **HTML** (Internet & splet, HTML, kodne tabele)
    - [prosojnice](03-html/prosojnice.html)
+4. **CSS** (CSS)
+   - [prosojnice](04-css/prosojnice.html)
+   - primer: [HTML](04-css/primer/recepti.html) [CSS](04-css/primer/recepti.css)
