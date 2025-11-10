@@ -1,0 +1,239 @@
+\documentclass[]{beamer}
+\usepackage{../pomozno/prosojnice}
+
+\begin{document}
+\begin{frame}[fragile]
+  \begin{center}
+    \Huge\textbf \LaTeX
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{1em}
+  \begin{center}
+    {\Huge Donald E. Knuth}
+    \bigskip
+
+    \includegraphics[height=0.65\textheight,keepaspectratio]{knuth.jpg}
+    \smallskip
+
+    dobitnik Turingove nagrade (1974)
+  \end{center}
+\end{frame}
+
+\usebackgroundtemplate{%
+  \includegraphics[width=\paperwidth,height=\paperheight]{knuth-katja.jpg}%
+}
+\begin{frame}
+\end{frame}
+\usebackgroundtemplate{}
+
+\usebackgroundtemplate{%
+  \includegraphics[width=\paperwidth,height=\paperheight]{taocp.jpg}%
+}
+\begin{frame}
+\end{frame}
+\usebackgroundtemplate{}
+
+\begin{frame}
+  \vspace{1em}
+  \begin{center}
+    {\Huge
+      \begin{itemize}
+        \item Vol.~1 (1968)
+        \item Vol.~2 (1969)
+        \item Vol.~3 (1973)
+        \item<2> Vol.~2, druga izdaja (1976)
+        \item Vol.~4A (2011)
+        \item Vol.~4B (2022)
+      \end{itemize}
+    }
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{1em}
+  \begin{center}
+    {\Huge \TeX\ (1978)}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{1em}
+  \begin{center}
+    {\Huge Leslie Lamport}
+    \bigskip
+
+    \includegraphics[height=0.65\textheight,keepaspectratio]{lamport.jpg}
+    \smallskip
+
+    dobitnik Turingove nagrade (2013)
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{1em}
+  \begin{center}
+    {\Huge \LaTeX\ (1984)}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Markdown}
+
+\begin{minted}{markdown}
+# Naslov
+
+Besedilo je lahko **poudarjeno** ter
+vsebuje [povezave](https://www.fmf.uni-lj.si/),
+`programsko kodo` in sezname:
+- prva točka
+- druga točka
+- tretja točka
+\end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]{HTML}
+
+\begin{minted}{html}
+<h1>Naslov</h1>
+
+<p>Besedilo je lahko <strong>poudarjeno</strong> ter
+vsebuje <a href="https://www.fmf.uni-lj.si/">povezave</a>,
+<code>programsko kodo</code> in sezname:</p>
+<ul>
+  <li>prva točka</li>
+  <li>druga točka</li>
+  <li>tretja točka</li>
+</ul>
+\end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]{\LaTeX}
+
+\begin{minted}{latex}
+\section{Naslov}
+
+Besedilo je lahko \textbf{poudarjeno} ter
+vsebuje \href{https://www.fmf.uni-lj.si/}{povezave},
+\texttt{programsko kodo} in sezname:
+
+\begin{itemize}
+  \item prva točka
+  \item druga točka
+  \item tretja točka
+\end{itemize}
+\end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]{Ukazi in okolja}
+
+  \begin{block}{Ukazi}
+    \begin{itemize}
+      \item \mintinline{latex}|\ukaz|
+      \item \mintinline{latex}|\ukaz{argument}|
+      \item \mintinline{latex}|\ukaz[neobvezen]{argument}|
+      \item \mintinline{latex}|\ukaz[neobvezen]{argument1}{argument2}|
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Okolja}
+    \begin{minted}{latex}
+  \begin{okolje}
+    ...
+  \end{okolje}
+    \end{minted}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Struktura dokumenta}
+
+\begin{minted}{latex}
+\documentclass[11pt,a4paper]{article}
+% preambula
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+
+\title{Naslov dokumenta}
+\author{Avtor dokumenta}
+\date{\today}
+
+\begin{document}
+\maketitle
+...vsebina...
+\end{document}
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Matematika}
+  \centering
+
+  $$e^{i \pi} + 1 = 0$$
+  \mintinline{latex}|e^{i \pi} + 1 = 0|
+
+  $$\lim_{x \to 0} \frac{\sin x}{x} = 1$$
+  \mintinline{latex}|\lim_{x \to 0} \frac{\sin x}{x} = 1|
+
+  $$\int_{-\infty}^\infty e^{-x^2} \, dx = \sqrt{\pi}$$
+  \mintinline{latex}|\int_{-\infty}^\infty e^{-x^2}\,dx = \sqrt{\pi}|
+\end{frame}
+
+\begin{frame}[fragile]{Vrstični in prikazni način}
+  Naj bodo \(a, b, c \in \mathbb{R}\). Tedaj je
+  \[
+    x_{1, 2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+  \]
+  rešitev enačbe \(ax^2 + bx + c = 0\).
+
+  \begin{minted}{latex}
+Naj bodo \(a, b, c \in \mathbb{R}\). Tedaj je
+\[
+  x_{1, 2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\]
+rešitev enačbe \(ax^2 + bx + c = 0\).
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Vrstični in prikazni način}
+  Naj bodo $a, b, c \in \mathbb{R}$. Tedaj je
+  $$
+  x_{1, 2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+  $$
+  rešitev enačbe $ax^2 + bx + c = 0$.
+
+  \begin{minted}{latex}
+Naj bodo $a, b, c \in \mathbb{R}$. Tedaj je
+$$
+  x_{1, 2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+rešitev enačbe $ax^2 + bx + c = 0$.
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Matematična okolja}
+  \begin{align*}
+	a x^2 + b x + c &= 0 \\
+	\left(x + \frac{b}{2a}\right)^2 &= \frac{b^2-4ac}{4a^2} \\
+	x_{1, 2} &= \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+  \end{align*}
+
+  \begin{minted}{latex}
+\begin{align*}
+a_{11} x_1 + a_{12} x_2 + \cdots + a_{1n} x_n &= b_1 \\
+a_{21} x_1 + a_{22} x_2 + \cdots + a_{2n} x_n &= b_2 \\
+&\vdots \\
+a_{m1} x_1 + a_{m2} x_2 + \cdots + a_{mn} x_n &= b_m
+\end{align*}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{center}
+    \Huge MathJaX
+  \end{center}
+\end{frame}
+
+\end{document}
