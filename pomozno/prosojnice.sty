@@ -15,3 +15,10 @@
 
 \setbeamertemplate{navigation symbols}{}
 \usetheme{metropolis}
+
+\newenvironment{dobroenv}[1][Dobro]{\begin{exampleblock}{#1}}{\end{exampleblock}}
+\newcommand{\dobro}[2][Dobro]{\begin{dobroenv}[#1]#2\end{dobroenv}}
+\newenvironment{sprejemljivoenv}[1][Sprejemljivo]{\begin{block}{#1}}{\end{block}}
+\newcommand{\sprejemljivo}[2][Sprejemljivo]{\begin{sprejemljivoenv}[#1]#2\end{sprejemljivoenv}}
+\newenvironment{slaboenv}[1][Slabo]{\begin{alertblock}{#1}}{\end{alertblock}}
+\newcommand{\slabo}[2][Slabo]{\begin{slaboenv}[#1]#2\end{slaboenv}}

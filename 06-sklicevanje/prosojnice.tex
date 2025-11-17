@@ -1,0 +1,121 @@
+\documentclass[]{beamer}
+\usepackage{../pomozno/prosojnice}
+\setbeamertemplate{theorems}[numbered]
+{\theoremstyle{plain}
+  \newtheorem{izrek}{Izrek}
+  \newtheorem{posledica}[izrek]{Posledica}
+}
+
+% Definicija okoli za definicije in vaje
+{\theoremstyle{definition}
+  \newtheorem{definicija}[izrek]{Definicija}
+  \newtheorem{vaja}[izrek]{Vaja}
+}
+
+\begin{document}
+\begin{frame}[fragile]
+  \begin{center}
+    \Huge\textbf{Sklicevanje}
+  \end{center}
+\end{frame}
+
+\setcounter{izrek}{5}
+\begin{frame}[fragile]
+  \begin{izrek}[Pitagorov izrek]
+    \label{izr:pitagora}
+    V pravokotnem trikotniku s katetama \(a\) in \(b\) ter hipotenuzo \(c\) velja
+    \[
+      a^2 + b^2 = c^2.
+    \]
+  \end{izrek}
+  Izrek~\ref{izr:pitagora} je eden najstarejših izrekov v matematiki.
+  \begin{slaboenv}
+    \begin{minted}{latex}
+\textbf{Izrek~6 (Pitagorov izrek)} \\
+\emph{V pravokotnem trikotniku s katetama \(a\) in \(b\)
+ter hipotenuzo \(c\) velja
+\[ a^2 + b^2 = c^2. \]}
+Izrek~6 je eden najstarejših izrekov v matematiki.
+    \end{minted}
+  \end{slaboenv}
+\end{frame}
+
+\setcounter{izrek}{5}
+\begin{frame}[fragile]
+  \begin{izrek}[Pitagorov izrek]
+    % \label{izr:pitagora}
+    V pravokotnem trikotniku s katetama \(a\) in \(b\) ter hipotenuzo \(c\) velja
+    \[
+      a^2 + b^2 = c^2.
+    \]
+  \end{izrek}
+  Izrek~\ref{izr:pitagora} je eden najstarejših izrekov
+  v matematiki.
+  \begin{dobroenv}
+    \begin{minted}{latex}
+\begin{izrek}[Pitagorov izrek]
+  \label{izr:pitagora}
+  V pravokotnem trikotniku s katetama \(a\) in \(b\)
+  ter hipotenuzo \(c\) velja
+  \[ a^2 + b^2 = c^2. \]
+\end{izrek}
+Izrek~\ref{izr:pitagora} je eden najstarejših izrekov
+v matematiki.
+    \end{minted}
+  \end{dobroenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{latex}
+{\theoremstyle{plain}
+\newtheorem{izrek}{Izrek}[section]
+\newtheorem{posledica}[izrek]{Posledica}
+}
+
+{\theoremstyle{definition}
+\newtheorem{definicija}[izrek]{Definicija}
+\newtheorem{vaja}[izrek]{Vaja}
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{bibtex}
+@book{vidav08,
+  author    = {Ivan Vidav},
+  title     = {Višja matematika I (12.~ponatis)},
+  publisher = {DMFA--Založništvo},
+  year      = 2008
+}
+@book{rudin87,
+  author    = {Walter Rudin},
+  title     = {Real and Complex Analysis},
+  publisher = {McGraw-Hill},
+  year      = 1987
+}
+@unpublished{zapiski,
+  author = {Sašo Strle},
+  title  = {Analiza 1 za študente Finančne matematike},
+  note   = {zapiski predavanj},
+  year   = 2020
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{latex}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Nulla semper, ligula eget porttitor lobortis, lacus ante
+posuere magna, eget dapibus lacus odio sit amet urna.
+Curabitur eget tincidunt lacus~\cite{vidav08}, a mollis
+lectus. Donec non est a eros gravida venenatis nec quis
+elit. Sed vulputate~\cite{analiza1}, neque eget
+pellentesque egestas, eros diam porttitor est, non
+lobortis velit turpis vitae velit.
+
+\bibliographystyle{plain}
+\bibliography{literatura}
+  \end{minted}
+\end{frame}
+
+\end{document}
