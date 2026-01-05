@@ -18,3 +18,7 @@ Tu lahko najdete prosojnice in datoteke s predavanj pri predmetu Računalniški 
 7. **Predstavitve** (Beamer, različni formati slik)
    - [prosojnice](07-predstavitve/prosojnice.pdf) ([LaTeX](07-predstavitve/prosojnice.tex))
    - [primer LaTeX datoteke s skrivnostno napako](07-predstavitve/kje-je-napaka.tex)
+8. **Najpogostejše napake v LaTeXu**
+   - [prosojnice](08-poprava/prosojnice.pdf) ([LaTeX](08-poprava/prosojnice.tex))
+9. **Excel**
+   - [primer Excel datoteke](09-excel/rezultati.xlsx)

@@ -1,0 +1,467 @@
+\documentclass{beamer}
+\usepackage{../pomozno/prosojnice}
+\DeclareMathOperator{\sinus}{sinus}
+\setminted{
+    fontsize=\scriptsize
+}
+
+\title{Najpogostejše napake v \LaTeX-u}
+\date{}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}[fragile]{Ne vklapljajte nepotrebnih paketov}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{dobroenv}
+            \begin{minted}{latex}
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathtools}
+            \end{minted}   
+            \end{dobroenv}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{slaboenv}
+            \begin{minted}{latex}
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+% Ostale možnosti za kodiranje so:
+% Kodirna tabela za Windows
+% \usepackage[cp1250]{inputenc}
+% Kodirna tabela za Linux
+% \usepackage[latin2]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{graphicx}
+% \usepackage{tikz}
+            \end{minted} 
+        \end{slaboenv}       
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Če uporabljate \texttt{align}, uporabite tudi \texttt{\&}}
+    \begin{dobroenv}
+    \begin{minted}{latex}
+    \begin{align*}
+        a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n &= b_1 \\
+        a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n &= b_2 \\
+                                                     &\vdotswithin{=} \\
+        a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n &= b_n,
+    \end{align*}
+    \end{minted}
+
+    \begin{align*}
+        a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n &= b_1 \\
+        a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n &= b_2 \\
+                                                     &\vdotswithin{=} \\
+        a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n &= b_n,
+    \end{align*}
+    \end{dobroenv}
+\end{frame}
+
+\begin{frame}[fragile]{Če uporabljate \texttt{align}, uporabite tudi \texttt{\&}}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+        \begin{align*}
+            a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \\
+            a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_2 \\
+                                                         \vdotswithin{=} \\
+            a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n = b_n,
+        \end{align*}
+        \end{minted}
+
+    \begin{align*}
+        a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \\
+        a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_2 \\
+                                                     \vdotswithin{=} \\
+        a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n = b_n,
+    \end{align*}
+    \end{slaboenv}
+\end{frame}
+
+\begin{frame}[fragile]{Če uporabljate \texttt{align}, uporabite tudi \texttt{\&}}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+        \begin{align*}
+            a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \\
+            a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_1 + b_2 \\
+                                                         \vdotswithin{=} \\
+            a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n = b_1 + b_2 + \dots + b_n,
+        \end{align*}
+        \end{minted}
+
+    \begin{align*}
+        a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \\
+        a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_1 + b_2 \\
+                                                     \vdotswithin{=} \\
+        a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n = b_1 + b_2 + \dots + b_n,
+    \end{align*}
+    \end{slaboenv}
+\end{frame}
+
+\begin{frame}[fragile]{Če nočete oštevilčenja, uporabite \texttt{align*}}
+    \begin{dobroenv}
+    \begin{minted}{latex}
+        \begin{align*}
+            a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \\
+            a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_2 \\
+                                                         \vdotswithin{=} \\
+            a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n = b_n,
+        \end{align*}
+        \end{minted}
+
+    \begin{align*}
+        a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \\
+        a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_2 \\
+                                                     \vdotswithin{=} \\
+        a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n = b_n,
+    \end{align*}
+    \end{dobroenv}
+\end{frame}
+
+\begin{frame}[fragile]{Če nočete oštevilčenja, uporabite \texttt{align*}}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+        \begin{align}
+            a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \\
+            a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_2 \\
+                                                         \vdotswithin{=} \\
+            a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n = b_n,
+        \end{align}
+        \end{minted}
+
+    \begin{align}
+        a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \\
+        a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_2 \\
+                                                     \vdotswithin{=} \\
+        a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n = b_n,
+    \end{align}
+    \end{slaboenv}
+\end{frame}
+
+\begin{frame}[fragile]{Če nočete oštevilčenja, uporabite \texttt{align*}}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+    \begin{align}
+        a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \nonumber\\
+        a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_2 \nonumber\\
+                                                        \vdotswithin{=}  \nonumber\\
+        a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n = b_n, \nonumber
+    \end{align}
+    \end{minted}
+
+    \begin{align}
+        a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n = b_1 \nonumber\\
+        a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n = b_2 \nonumber\\
+                                                     \vdotswithin{=}  \nonumber\\
+        a_{n1} x_1 + a_{n2} x_2 + \dots + a_{nn} x_n = b_n, \nonumber
+    \end{align}
+    \end{slaboenv}
+\end{frame}
+
+\begin{frame}[fragile]{Matematične ukaze definirajte brez \texttt{\$}}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+    \newcommand{\Rn}{$\mathbb{R}^n$}
+    Kjer je matrika s koeficienti iz \Rn, $b \in$ \Rn je stolpec skalarjev,
+    $x \in$ \Rn pa stolpec neznank.
+    \end{minted}
+    \newcommand{\Rn}{$\mathbb{R}^n$}
+    Kjer je matrika s koeficienti iz \Rn, $b \in$ \Rn je stolpec skalarjev,
+    $x \in$ \Rn pa stolpec neznank.
+    \end{slaboenv}
+
+    \begin{dobroenv}
+    \begin{minted}{latex}
+    \newcommand{\Rn}{\mathbb{R}^n}
+    Kjer je matrika s koeficienti iz $\Rn$, $b \in \Rn$ je stolpec skalarjev,
+    $x \in \Rn$ pa stolpec neznank.
+    \end{minted}
+    \newcommand{\Rn}{\mathbb{R}^n}
+    Kjer je matrika s koeficienti iz $\Rn$, $b \in \Rn$ je stolpec skalarjev,
+    $x \in \Rn$ pa stolpec neznank.
+    \end{dobroenv}
+\end{frame}
+
+\begin{frame}[fragile]{Uporabite lahko tudi \texttt{\textbackslash ensuremath}}
+    \begin{sprejemljivoenv}
+    \begin{minted}{latex}
+    \newcommand{\Rn}{\ensuremath{\mathbb{R}^n}}
+    Kjer je matrika s koeficienti iz \Rn, $b \in \Rn$ je stolpec skalarjev,
+    $x \in \Rn$ pa stolpec neznank.
+    \end{minted}
+    \newcommand{\Rn}{\ensuremath{\mathbb{R}^n}}
+    Kjer je matrika s koeficienti iz \Rn, $b \in \Rn$ je stolpec skalarjev, $x \in \Rn$ pa stolpec neznank.
+    \end{sprejemljivoenv}
+
+    \begin{dobroenv}[Bolje]
+    \begin{minted}{latex}
+    \newcommand{\Rn}{\mathbb{R}^n}
+    Kjer je matrika s koeficienti iz $\Rn$, $b \in \Rn$ je stolpec skalarjev,
+    $x \in \Rn$ pa stolpec neznank.
+    \end{minted}
+    \newcommand{\Rn}{\mathbb{R}^n}
+    Kjer je matrika s koeficienti iz $\Rn$, $b \in \Rn$ je stolpec skalarjev, $x \in \Rn$ pa stolpec neznank.
+    \end{dobroenv}
+\end{frame}
+
+
+\begin{frame}[fragile]{Uporabiti morate ustrezne ukaze}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+    \Sigma_{i=1}^n a_i^2 = 42
+    \end{minted}
+    $$\Sigma_{i=1}^n a_i^2 = 42$$
+    \end{slaboenv}
+
+    \begin{dobroenv}
+    \begin{minted}{latex}
+    \sum_{i=1}^n a_i^2 = 42
+    \end{minted}
+    \begin{center}
+    $$2 \left(\left(\left(\sum_{i=1}^n a_i^2 = 42\right)\right)\right)$$
+    \end{center}
+    \end{dobroenv}
+\end{frame}
+
+\begin{frame}[fragile]{Uporabiti morate ustrezne ukaze}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+    x \epsilon \mathbb{R}
+    \end{minted}
+    $$x \epsilon \mathbb{R}$$
+    \end{slaboenv}
+
+    \begin{dobroenv}
+    \begin{minted}{latex}
+    x \in \mathbb{R}
+    \end{minted}
+    $$x \in \mathbb{R}$$
+    \end{dobroenv}
+\end{frame}
+
+
+\begin{frame}[fragile]{Uporabiti morate ustrezne ukaze}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+    A \cap B = \phi
+    \end{minted}
+    $$A \cap B = \phi$$
+    \end{slaboenv}
+
+    \begin{dobroenv}
+    \begin{minted}{latex}
+    A \cap B = \emptyset
+    \end{minted}
+    $$A \cap B = \emptyset$$
+    \end{dobroenv}
+\end{frame}
+
+\begin{frame}[fragile]{Uporabiti morate ustrezne ukaze}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+    $2 < x , y > + 3 < y, x >$
+    \end{minted}
+    $10 \left< x , y \right> + 3 \left< y, x \right>$
+    \end{slaboenv}
+
+    \begin{dobroenv}
+    \begin{minted}{latex}
+    $2 \langle x , y \rangle + 3 \langle y, x \rangle$
+    \end{minted}
+    $2 \left< x , y \right> + 3 \langle y, x \rangle$
+    \end{dobroenv}
+\end{frame}
+
+
+\begin{frame}[fragile]{Za matematične operacije uporabimo ustrezne ukaze}
+\begin{columns}[t]
+\begin{column}{0.45\textwidth}
+\begin{slaboenv}
+\begin{minted}{latex}
+sin x + sin (x + y)
+\end{minted}
+$$sin x + sin (x + y)$$
+\end{slaboenv}
+\begin{slaboenv}
+\begin{minted}{latex}
+sin~x + sin~(x + y)
+\end{minted}
+$$sin~x + sin~(x + y)$$
+\end{slaboenv}
+\begin{dobroenv}
+\begin{minted}{latex}
+\sin x + \sin (x + y)
+\end{minted}
+$$\sin x + \sin (x + y)$$
+\end{dobroenv}
+\end{column}
+\begin{column}{0.55\textwidth}
+\begin{slaboenv}
+\begin{minted}{latex}
+\mathsf{sin}~x + \mathsf{sin}~(x + y)
+\end{minted}
+$$\mathsf{sin}~x + \mathsf{sin}~(x + y)$$
+\end{slaboenv}
+\begin{slaboenv}
+\begin{minted}{latex}
+\text{sin}~x + \text{sin}~(x + y)
+\end{minted}
+$$\text{sin}~x + \text{sin}~(x + y)$$
+\end{slaboenv}
+\begin{dobroenv}
+\begin{minted}{latex}
+\DeclareMathOperator{\sinus}{sinus}
+\sinus x + \sinus (x + y)
+\end{minted}
+$$\sinus x + \sinus (x + y)$$
+\end{dobroenv}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Novih odstavkov se ne dela z \texttt{\textbackslash\textbackslash}}
+    \begin{dobroenv}
+    \begin{minted}{latex}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Ut id viverra ligula. Phasellus vehicula lorem vitae luctus
+    dignissim.
+
+    Sed ac justo commodo, fringilla urna ac, efficitur leo.
+    Praesent dui odio, accumsan ac sapien nec, interdum volutpat
+    est. 
+    \end{minted}
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Ut id viverra ligula. Phasellus vehicula lorem vitae luctus
+    dignissim.
+
+    Sed ac justo commodo, fringilla urna ac, efficitur leo.
+    Praesent dui odio, accumsan ac sapien nec, interdum volutpat
+    est.
+    \end{dobroenv}
+\end{frame}
+
+\begin{frame}[fragile]{Novih odstavkov se ne dela z \texttt{\textbackslash\textbackslash}}
+    \begin{sprejemljivoenv}
+    \begin{minted}{latex}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Ut id viverra ligula. Phasellus vehicula lorem vitae luctus
+    dignissim. \par
+    Sed ac justo commodo, fringilla urna ac, efficitur leo.
+    Praesent dui odio, accumsan ac sapien nec, interdum volutpat
+    est. 
+    \end{minted}
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Ut id viverra ligula. Phasellus vehicula lorem vitae luctus
+    dignissim. \par
+    Sed ac justo commodo, fringilla urna ac, efficitur leo.
+    Praesent dui odio, accumsan ac sapien nec, interdum volutpat
+    est.
+    \end{sprejemljivoenv}
+\end{frame}
+
+\begin{frame}[fragile]{Novih odstavkov se ne dela z \texttt{\textbackslash\textbackslash}}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Ut id viverra ligula. Phasellus vehicula lorem vitae luctus
+    dignissim. \\
+    Sed ac justo commodo, fringilla urna ac, efficitur leo.
+    Praesent dui odio, accumsan ac sapien nec, interdum volutpat
+    est. 
+    \end{minted}
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Ut id viverra ligula. Phasellus vehicula lorem vitae luctus
+    dignissim. \\
+    Sed ac justo commodo, fringilla urna ac, efficitur leo.
+    Praesent dui odio, accumsan ac sapien nec, interdum volutpat
+    est.
+    \end{slaboenv}
+\end{frame}
+
+\begin{frame}[fragile]{Novih odstavkov se ne dela z \texttt{\textbackslash\textbackslash}}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Ut id viverra ligula. Phasellus vehicula lorem vitae luctus
+    dignissim. \\[1ex]
+    Sed ac justo commodo, fringilla urna ac, efficitur leo.
+    Praesent dui odio, accumsan ac sapien nec, interdum volutpat
+    est. 
+    \end{minted}
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Ut id viverra ligula. Phasellus vehicula lorem vitae luctus
+    dignissim. \\[1ex]
+    Sed ac justo commodo, fringilla urna ac, efficitur leo.
+    Praesent dui odio, accumsan ac sapien nec, interdum volutpat
+    est.
+    \end{slaboenv}
+\end{frame}
+
+\begin{frame}[fragile]{Za sredinsko poravnane izraze uporabljamo prikazni način}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+    \begin{center}
+        \( e^{i \pi} + 1 = 0 \)
+    \end{center}
+    \end{minted}
+    \begin{center}
+        \( e^{i \pi} + 1 = 0 \)
+    \end{center}
+    \end{slaboenv}
+
+    \begin{dobroenv}
+    \begin{minted}{latex}
+    \[ % oz. \begin{equation*}
+        e^{i \pi} + 1 = 0
+    \] % oz. \end{equation*}
+    \end{minted}
+    \[ e^{i \pi} + 1 = 0 \]
+    \end{dobroenv}
+\end{frame}
+
+\begin{frame}[fragile]{Za sredinsko poravnane izraze uporabljamo prikazni način}
+    \begin{slaboenv}
+    \begin{minted}{latex}
+    \begin{center}
+        \( x_{1, 2} = \frac{-b \pm \sqrt{b^2 - 4 ac}}{2a} \)
+    \end{center}
+    \end{minted}
+    \begin{center}
+        \( x_{1, 2} = \frac{-b \pm \sqrt{b^2 - 4 ac}}{2a} \)
+    \end{center}
+    \end{slaboenv}
+
+    \begin{dobroenv}
+    \begin{minted}{latex}
+    \[ % oz. \begin{equation*}
+        x_{1, 2} = \frac{-b \pm \sqrt{b^2 - 4 ac}}{2a}
+    \] % oz. \end{equation*}
+    \end{minted}
+    \[ x_{1, 2} = \frac{-b \pm \sqrt{b^2 - 4 ac}}{2a} \]
+    \end{dobroenv}
+\end{frame}
+
+\end{document}
