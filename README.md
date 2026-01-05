@@ -22,3 +22,6 @@ Tu lahko najdete prosojnice in datoteke s predavanj pri predmetu Računalniški 
    - [prosojnice](08-poprava/prosojnice.pdf) ([LaTeX](08-poprava/prosojnice.tex))
 9. **Excel**
    - [primer Excel datoteke](09-excel/rezultati.xlsx)
+10. **Mathematica**
+   - [delne rešitve spomladanskega roka mature 2025](10-mathematica/matura.nb) (FIN & MAT & PED)
+   - [izračun površine prerešetanega sinusa](10-mathematica/preresetani-sinus.nb) (APF & APM)
