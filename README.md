@@ -25,3 +25,4 @@ Tu lahko najdete prosojnice in datoteke s predavanj pri predmetu Računalniški 
 10. **Mathematica**
    - [delne rešitve spomladanskega roka mature 2025](10-mathematica/matura.nb) (FIN & MAT & PED)
    - [izračun površine prerešetanega sinusa](10-mathematica/preresetani-sinus.nb) (APF & APM)
+   - [`Manipulate`](10-mathematica/manipulate.nb)
